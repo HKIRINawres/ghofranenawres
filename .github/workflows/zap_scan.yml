@@ -6,6 +6,10 @@ on:
       - master
   pull_request:
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   zap_scan:
     name: ZAP Baseline Scan
@@ -53,7 +57,6 @@ jobs:
             echo "Waiting for Juice Shop..."
             sleep 2
           done
-
           echo "Juice Shop did not start"
           cat juice-shop.log
           exit 1

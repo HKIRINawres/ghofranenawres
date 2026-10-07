@@ -1,0 +1,28 @@
+name: SCA - Dependency Security Scan
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  sca:
+    name: Dependency Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run SCA
+        run: npm audit --audit-level=high

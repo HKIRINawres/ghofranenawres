@@ -65,4 +65,5 @@ jobs:
         uses: zaproxy/action-baseline@v0.15.0
         with:
           target: 'http://localhost:3000'
+          allow_issue_writing: false
           cmd_options: '-a'

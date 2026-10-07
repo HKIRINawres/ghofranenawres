@@ -20,13 +20,23 @@ jobs:
         with:
           node-version: 24
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build application
+      - name: Install root dependencies
         run: |
-          npm run build:frontend
-          npm run build:server
+          npm pkg delete scripts.postinstall
+          npm install
+
+      - name: Install frontend dependencies
+        run: |
+          cd frontend
+          npm install
+
+      - name: Build frontend
+        run: |
+          cd frontend
+          npx ng build --configuration production
+
+      - name: Build server
+        run: npm run build:server
 
       - name: Start Juice Shop
         run: |
@@ -43,6 +53,7 @@ jobs:
             echo "Waiting for Juice Shop..."
             sleep 2
           done
+
           echo "Juice Shop did not start"
           cat juice-shop.log
           exit 1

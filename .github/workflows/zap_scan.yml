@@ -8,7 +8,6 @@ on:
 
 permissions:
   contents: read
-  
 
 jobs:
   zap_scan:
@@ -57,11 +56,12 @@ jobs:
             echo "Waiting for Juice Shop..."
             sleep 2
           done
+
           echo "Juice Shop did not start"
           cat juice-shop.log
           exit 1
 
-       - name: Run OWASP ZAP Baseline Scan
+      - name: Run OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.15.0
         with:
           target: 'http://localhost:3000'

@@ -33,6 +33,10 @@ on:
         description: "Full ZAP scan with the Ajax spider (about 4 minutes longer)"
         type: boolean
         default: false
+      refresh_baseline:
+        description: "Regenerate security/accepted-risks.json from this run's reports and commit it (first run / after dependency drift)"
+        type: boolean
+        default: false
 
 # a newer push to the same branch or PR cancels the run in progress
 concurrency:
@@ -365,6 +369,53 @@ jobs:
           SMTP_SERVER: ${{ secrets.SMTP_SERVER }}   # optional, default smtp.gmail.com
           SMTP_PORT: ${{ secrets.SMTP_PORT }}       # optional, default 587 (STARTTLS)
         run: python3 security/notify.py
+
+  # ---------- baseline maintenance (manual only) ----------
+  # Juice Shop is intentionally vulnerable; the accepted-risk baseline captures its known findings so
+  # that only NEW ones block. Dependency versions drift, so the finding IDs eventually stop matching
+  # and the gate blocks everything again. Run this manually (Actions > devsecops > Run workflow >
+  # "refresh_baseline") to regenerate security/accepted-risks.json from THIS run's real reports and
+  # commit it back. The resulting push re-runs the pipeline, which then passes the gate and deploys.
+  # It is a separate job so quality_gate keeps contents:read (least privilege); only this one writes.
+  refresh_baseline:
+    name: refresh_baseline (regenerate accepted risks, manual dispatch only)
+    needs: [build, secrets_scan, sast, scan_dependencies, iac_scan, docker_scan, dast, acceptance_tests]
+    if: github.event_name == 'workflow_dispatch' && inputs.refresh_baseline
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # needed to commit the regenerated baseline back to the branch
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          persist-credentials: false   # we push with an explicit token URL below, not the checkout credential
+      - uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+      - name: Collect reports
+        run: |
+          mkdir -p security/out/checkov
+          cp artifacts/docker_scan/trivy.json security/out/ 2>/dev/null || true
+          cp artifacts/dast/zap-report.json security/out/ 2>/dev/null || true
+          cp artifacts/acceptance_tests/gauntlt.txt security/out/ 2>/dev/null || true
+          cp artifacts/scan_dependencies/trivy-fs.json security/out/ 2>/dev/null || true
+          cp artifacts/iac_scan/results_json.json security/out/checkov/ 2>/dev/null || true
+      - name: Regenerate accepted-risks.json from the current reports
+        run: python3 security/gate.py --write-baseline --baseline-days 90
+      - name: Commit and push the refreshed baseline
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add security/accepted-risks.json
+          if git diff --cached --quiet; then
+            echo "Baseline unchanged; nothing to commit." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          git commit -m "chore(security): refresh accepted-risk baseline from run ${GITHUB_RUN_ID}"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "HEAD:${GITHUB_REF_NAME}"
+          echo "Refreshed baseline committed to ${GITHUB_REF_NAME}; the triggered run should pass the gate and deploy." >> "$GITHUB_STEP_SUMMARY"
 
   # ---------- production (Phase 3) ----------
   # Only master is deployed, and only if quality_gate passed (a blocked commit shows this job as skipped).

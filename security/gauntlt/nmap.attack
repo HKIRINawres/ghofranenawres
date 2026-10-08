@@ -1,0 +1,29 @@
+@slow
+Feature: Only the expected port is open on the application target
+  The target is the acceptance container itself (127.0.0.1 in its own network namespace).
+
+  Background:
+    Given "nmap" is installed
+    And the following profile:
+      | name     | value     |
+      | hostname | 127.0.0.1 |
+
+  Scenario: The application port is reachable
+    When I launch an "nmap" attack with:
+      """
+      nmap -Pn -p 22,80,443,3000,8080 <hostname>
+      """
+    Then the output should match:
+      """
+      3000/tcp\s+open
+      """
+
+  Scenario: No management or web ports are exposed besides the application
+    When I launch an "nmap" attack with:
+      """
+      nmap -Pn -p 22,80,443,3000,8080 <hostname>
+      """
+    Then the output should not match:
+      """
+      (22|80|443|8080)/tcp\s+open
+      """

@@ -1,0 +1,386 @@
+# DevSecOps pipeline (brief §5). One job per security control, named as in the brief:
+#   secrets_scan, sast, scan_dependencies, iac_scan, build, docker_scan, dast, acceptance_tests,
+#   then quality_gate, which decides whether this commit may be deployed and notifies the team, then
+#   deploy (Phase 3: on master, the exact image digest that was scanned gets the production tags).
+#
+# Blocking vs non-blocking (brief §5, details in docs/security-policy.md):
+#   - secrets_scan and sast block by themselves on anything NEW since the `baseline` tag
+#     (the raw Juice Shop import, which is vulnerable on purpose).
+#   - every other scanner only produces a report; quality_gate reads all reports and blocks on
+#     >=1 critical or >=5 high (zap, trivy, trivy_fs) or any IaC / acceptance failure (checkov,
+#     gauntlt) that is not in security/accepted-risks.json. Missing reports also block (fail secure).
+#
+# Where each finding is (brief §6): security/annotate.py runs in every scanner job. It adds one
+# annotation per finding on its file and line (red = new and blocking, yellow = known/accepted) and
+# lists every finding, linked to its file and line, in the job summary. It decides nothing.
+#
+# Pipeline's own secrets (brief §5): encrypted GitHub secrets, masked in logs, never in this file:
+# SONAR_TOKEN (SonarQube Cloud) and the optional notification channels (TEAMS_WEBHOOK_URL,
+# DISCORD_WEBHOOK_URL, SLACK_WEBHOOK_URL, SMTP_USERNAME/SMTP_PASSWORD/NOTIFY_EMAIL_TO). Registry
+# access uses the short-lived GITHUB_TOKEN that GitHub creates for each run.
+# Tool versions are pinned so a new release cannot silently change results.
+name: devsecops
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  schedule:
+    - cron: "0 2 * * 0"   # Sundays 02:00 UTC: full DAST (Ajax spider); push/PR runs use the quick scan
+  workflow_dispatch:
+    inputs:
+      full_dast:
+        description: "Full ZAP scan with the Ajax spider (about 4 minutes longer)"
+        type: boolean
+        default: false
+
+# a newer push to the same branch or PR cancels the run in progress
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  GITLEAKS_VERSION: "8.30.1"
+  TRIVY_IMAGE: aquasec/trivy:0.74.0
+  CHECKOV_VERSION: "3.3.21"
+  IMAGE: juice-shop:acceptance   # local name the scripts use for the pulled candidate
+  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
+  # build-push-action otherwise uploads a .dockerbuild record that breaks `gh run download`
+  DOCKER_BUILD_RECORD_UPLOAD: "false"
+
+jobs:
+  # ---------- source-level controls (Phase 1) ----------
+  secrets_scan:
+    name: secrets_scan (Gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0   # full history + the baseline tag
+      - name: Require the starting-code baseline tag
+        run: git rev-parse --verify refs/tags/baseline >/dev/null || { echo 'Create and push the baseline tag as described in docs/devsecops.md.'; exit 1; }
+      - name: Install Gitleaks
+        run: curl -sSfL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" | tar -xz gitleaks
+      - name: Full history (report only)
+        run: ./gitleaks git --redact --exit-code 0 --report-format json --report-path gitleaks-full.json
+      - name: New commits since baseline (blocking)
+        run: ./gitleaks git --redact --verbose --log-opts="baseline..HEAD" --report-format json --report-path gitleaks-new.json
+      - name: Show where the secrets are (annotations + job summary)
+        if: always()
+        continue-on-error: true   # display only, decides nothing
+        run: python3 security/annotate.py gitleaks gitleaks-full.json --new gitleaks-new.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: secrets_scan
+          path: gitleaks-*.json
+
+  sast:
+    name: sast (Semgrep)
+    runs-on: ubuntu-latest
+    container: semgrep/semgrep:1.165.0   # same version as the pre-commit hook
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+      - name: Require the starting-code baseline tag
+        run: git rev-parse --verify refs/tags/baseline >/dev/null || { echo 'Create and push the baseline tag as described in docs/devsecops.md.'; exit 1; }
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
+      - name: Full scan (report only)
+        run: semgrep scan --config p/security-audit --config p/javascript --config security/semgrep-custom.yml --metrics off --json --output semgrep-full.json || true
+      - name: New findings since baseline (blocking)
+        run: semgrep scan --config p/security-audit --config p/javascript --config security/semgrep-custom.yml --metrics off --baseline-commit baseline --error --json-output semgrep-new.json
+      - name: Show where the findings are (annotations + job summary)
+        if: always()
+        continue-on-error: true   # display only, decides nothing
+        run: python3 security/annotate.py semgrep semgrep-full.json --new semgrep-new.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: sast
+          path: semgrep-*.json
+
+  scan_dependencies:
+    name: scan_dependencies (Trivy fs, npm audit, Retire.js)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24   # npm 10 (Node 22) crashes on the frontend's nested overrides
+      - name: Install dependencies without running their install scripts
+        run: |
+          npm install --ignore-scripts --package-lock=true --no-audit --no-fund
+          (cd frontend && npm install --ignore-scripts --package-lock=true --no-audit --no-fund)
+      - name: Trivy filesystem scan (gated by quality_gate)
+        run: |
+          mkdir -p out
+          docker run --rm -v "$PWD:/src:ro" -v "$PWD/out:/out" "$TRIVY_IMAGE" fs /src \
+            --scanners vuln --severity HIGH,CRITICAL --skip-dirs /src/data/static/codefixes \
+            --format json --output /out/trivy-fs.json
+      - name: Show where the vulnerable dependencies come from (annotations + job summary)
+        if: always()
+        continue-on-error: true   # display only, decides nothing
+        run: python3 security/annotate.py trivy_fs out/trivy-fs.json
+      - name: npm audit + Retire.js (Lab 2, report only)
+        run: |
+          npm audit --json > out/npm-audit.json || true
+          (cd frontend && npm audit --json > ../out/npm-audit-frontend.json) || true
+          npx --yes retire@5.7.0 --path . --outputformat json --outputpath out/retire.json || true
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: scan_dependencies
+          path: out/
+
+  iac_scan:
+    name: iac_scan (Checkov)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - run: pipx install "checkov==${CHECKOV_VERSION}"
+      - name: Dockerfiles, Terraform and our own workflows
+        run: >
+          checkov -d . --framework dockerfile terraform github_actions
+          --skip-path node_modules --skip-path data/static/codefixes --soft-fail
+          -o json --output-file-path out/checkov
+      - name: Show where the misconfigurations are (annotations + job summary)
+        if: always()
+        continue-on-error: true   # display only, decides nothing
+        run: python3 security/annotate.py checkov out/checkov/results_json.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: iac_scan
+          path: out/checkov
+
+  # ---------- central view + history (brief §6) ----------
+  # SonarQube Cloud (free tier): its own analysis plus the findings of the source-level scanners,
+  # on their file and line, kept from run to run (Activity page = trend). Reporting only: the decision
+  # stays with quality_gate, so this job is not one of its needs.
+  sonarqube:
+    name: sonarqube (central view and history, SonarQube Cloud)
+    needs: [secrets_scan, sast, scan_dependencies, iac_scan]
+    if: always()   # also when a scanner blocked: that is when the findings matter
+    runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0   # SonarQube uses git blame to tell new code from old
+      - uses: actions/download-artifact@v8
+        continue-on-error: true
+        with:
+          path: artifacts
+      - name: Convert the other scanners' findings for SonarQube
+        run: |
+          mkdir -p security/out/checkov
+          cp artifacts/sast/semgrep-full.json artifacts/secrets_scan/gitleaks-full.json artifacts/scan_dependencies/trivy-fs.json security/out/ 2>/dev/null || true
+          cp artifacts/iac_scan/results_json.json security/out/checkov/ 2>/dev/null || true
+          python3 security/sonar_issues.py
+      - name: Explain skipped SonarQube upload when no token is configured
+        if: ${{ env.SONAR_TOKEN == '' }}
+        run: echo "SONAR_TOKEN is not configured; scanner reports remain available as workflow artifacts." >> "$GITHUB_STEP_SUMMARY"
+      - uses: SonarSource/sonarqube-scan-action@v8.3.0
+        if: ${{ env.SONAR_TOKEN != '' }}
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}   # encrypted secret, masked in logs
+
+  # ---------- image-level controls (Phase 2) ----------
+  # Build once, promote: the image is built once and pushed as a candidate (ghcr.io, tag ci-<sha>).
+  # It runs in parallel with the source-level scans (no `needs`): a SAST/secret finding must not stop
+  # the image from being built, otherwise docker_scan/dast/acceptance_tests would never run and the
+  # quality_gate would decide on incomplete reports. Compiling the app IS the build step, done here
+  # once inside security/Dockerfile.acceptance, so there is no separate application-build job.
+  # Every image job pulls that exact digest, and deploy re-tags the same digest: what reaches
+  # production is, by construction, what was scanned. Registry login uses the job's GITHUB_TOKEN.
+  build:
+    name: build (image pushed once as a candidate)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      digest: ${{ steps.image.outputs.digest }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: docker/setup-buildx-action@v4
+        with:
+          cleanup: false   # removing the builder took 30 s on the critical path; the runner is thrown away anyway
+      - name: Log in to ghcr.io
+        run: echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v7
+        id: image
+        with:
+          context: .
+          file: security/Dockerfile.acceptance
+          tags: ${{ env.REGISTRY_IMAGE }}:ci-${{ github.sha }}
+          push: true
+          provenance: false   # one plain image manifest, which `docker save` in docker_scan handles
+          cache-to: type=gha,mode=max   # max: also caches the dependency stages
+          cache-from: type=gha
+
+  docker_scan:
+    name: docker_scan (Trivy image + SBOM)
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v7
+      - name: Pull the candidate image by digest
+        run: |
+          echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker pull -q "$CANDIDATE" && docker tag "$CANDIDATE" "$IMAGE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CANDIDATE: ${{ env.REGISTRY_IMAGE }}@${{ needs.build.outputs.digest }}
+      - run: bash security/run-acceptance.sh docker_scan
+      - name: Show the vulnerable packages in the image (annotations + job summary)
+        if: always()
+        continue-on-error: true   # display only, decides nothing
+        run: python3 security/annotate.py trivy security/out/trivy.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: docker_scan
+          path: security/out/
+
+  dast:
+    name: dast (OWASP ZAP baseline)
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v7
+      - name: Pull the candidate image by digest
+        run: |
+          echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker pull -q "$CANDIDATE" && docker tag "$CANDIDATE" "$IMAGE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CANDIDATE: ${{ env.REGISTRY_IMAGE }}@${{ needs.build.outputs.digest }}
+      - run: bash security/run-acceptance.sh dast
+        env:
+          ZAP_FULL: ${{ (github.event_name == 'schedule' || inputs.full_dast) && '1' || '0' }}
+      - name: Show the alerts and their URLs (annotations + job summary)
+        if: always()
+        continue-on-error: true   # display only, decides nothing
+        run: python3 security/annotate.py zap security/out/zap-report.json
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: dast
+          path: security/out/
+
+  acceptance_tests:
+    name: acceptance_tests (Gauntlt, Lab 3)
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v7
+      - name: Pull the candidate image by digest
+        run: |
+          echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker pull -q "$CANDIDATE" && docker tag "$CANDIDATE" "$IMAGE"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CANDIDATE: ${{ env.REGISTRY_IMAGE }}@${{ needs.build.outputs.digest }}
+      - run: bash security/run-acceptance.sh acceptance_tests
+      - name: Show the failed scenarios (annotations + job summary)
+        if: always()
+        continue-on-error: true   # display only, decides nothing
+        run: python3 security/annotate.py gauntlt security/out/gauntlt.txt
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: acceptance_tests
+          path: security/out/
+
+  # ---------- decision ----------
+  quality_gate:
+    name: quality_gate (decision + attestation)
+    needs: [build, secrets_scan, sast, scan_dependencies, iac_scan, docker_scan, dast, acceptance_tests]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        continue-on-error: true   # a missing report is caught by the gate itself (fail secure)
+        with:
+          path: artifacts
+      - name: Collect reports
+        run: |
+          mkdir -p security/out/checkov
+          cp artifacts/docker_scan/trivy.json artifacts/docker_scan/sbom-image.cdx.json security/out/ 2>/dev/null || true
+          cp artifacts/dast/zap-report.json artifacts/dast/zap-report.html security/out/ 2>/dev/null || true
+          cp artifacts/acceptance_tests/gauntlt.txt security/out/ 2>/dev/null || true
+          cp artifacts/scan_dependencies/trivy-fs.json security/out/ 2>/dev/null || true
+          cp artifacts/iac_scan/results_json.json security/out/checkov/ 2>/dev/null || true
+          cp artifacts/sast/semgrep-*.json artifacts/secrets_scan/gitleaks-*.json security/out/ 2>/dev/null || true   # table + notification
+      - name: Gate self-check
+        run: python3 security/test_gate.py
+      - name: Decide
+        shell: bash   # pipefail: without it `| tee` would hide the gate's exit code
+        env:
+          IMAGE_REF: ${{ env.REGISTRY_IMAGE }}@${{ needs.build.outputs.digest }}
+          NEEDS: ${{ toJSON(needs) }}   # gate.py: a failed secrets_scan or sast blocks the decision and the attestation too
+        run: |
+          echo "Upstream jobs: secrets_scan=${{ needs.secrets_scan.result }} sast=${{ needs.sast.result }}" >> "$GITHUB_STEP_SUMMARY"
+          python3 security/gate.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: quality_gate
+          path: |
+            security/out/attestation.md
+            security/out/gate-result.json
+            security/out/zap-report.html
+      - name: Notify the team (brief §6; each channel only if its secret is set)
+        if: always()
+        continue-on-error: true   # a notification problem never changes the decision
+        env:
+          NEEDS: ${{ toJSON(needs) }}
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SMTP_USERNAME: ${{ secrets.SMTP_USERNAME }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          NOTIFY_EMAIL_TO: ${{ secrets.NOTIFY_EMAIL_TO }}
+          SMTP_SERVER: ${{ secrets.SMTP_SERVER }}   # optional, default smtp.gmail.com
+          SMTP_PORT: ${{ secrets.SMTP_PORT }}       # optional, default 587 (STARTTLS)
+        run: python3 security/notify.py
+
+  # ---------- production (Phase 3) ----------
+  # Only master is deployed, and only if quality_gate passed (a blocked commit shows this job as skipped).
+  # Deploying = giving the production tags to the candidate digest the image jobs scanned; nothing is
+  # rebuilt. PRs end at the gate, which keeps their feedback short.
+  deploy:
+    name: deploy (promote the scanned image on ghcr.io)
+    needs: [build, quality_gate]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Tag the scanned digest as <sha> and latest
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SCANNED: ${{ env.REGISTRY_IMAGE }}@${{ needs.build.outputs.digest }}
+        run: |
+          echo "$GH_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
+          docker buildx imagetools create --tag "$REGISTRY_IMAGE:$GITHUB_SHA" --tag "$REGISTRY_IMAGE:latest" "$SCANNED"
+          echo "Deployed $SCANNED (the digest the image jobs scanned) as $REGISTRY_IMAGE:$GITHUB_SHA and :latest" >> "$GITHUB_STEP_SUMMARY"

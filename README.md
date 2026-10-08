@@ -5,13 +5,14 @@
 [![Twitter Follow](https://img.shields.io/twitter/follow/owasp_juiceshop.svg?style=social&label=Follow)](https://twitter.com/owasp_juiceshop)
 [![Subreddit subscribers](https://img.shields.io/reddit/subreddit-subscribers/owasp_juiceshop?style=social)](https://reddit.com/r/owasp_juiceshop)
 
-[![CI/CD Pipeline](https://github.com/juice-shop/juice-shop/actions/workflows/ci.yml/badge.svg?branch=develop)](https://github.com/juice-shop/juice-shop/actions/workflows/ci.yml)
-[![Release Pipeline](https://github.com/juice-shop/juice-shop/actions/workflows/release.yml/badge.svg)](https://github.com/juice-shop/juice-shop/actions/workflows/release.yml)
-[![Coverage Status](https://coveralls.io/repos/github/juice-shop/juice-shop/badge.svg?branch=develop)](https://coveralls.io/github/juice-shop/juice-shop?branch=develop)
-[![Cypress tests](https://img.shields.io/endpoint?url=https://dashboard.cypress.io/badge/simple/3hrkhu/develop&style=flat&logo=cypress)](https://dashboard.cypress.io/projects/3hrkhu/runs)
+[![DevSecOps Pipeline](https://github.com/HKIRINawres/ghofranenawres/actions/workflows/devsecops.yml/badge.svg?branch=master)](https://github.com/HKIRINawres/ghofranenawres/actions/workflows/devsecops.yml)
 [![OpenSSF Best Practices](https://www.bestpractices.dev/projects/223/badge)](https://www.bestpractices.dev/projects/223)
 ![GitHub stars](https://img.shields.io/github/stars/juice-shop/juice-shop.svg?label=GitHub%20%E2%98%85&style=flat)
 [![Static Badge](https://img.shields.io/badge/OWASP-Code_of_Conduct-blue)](CODE_OF_CONDUCT.md)
+
+## DevSecOps course project
+
+This repository uses OWASP Juice Shop as an intentionally vulnerable training application. The GitHub Actions pipeline adds code and secret scanning, dependency and IaC checks, application tests, container scanning, DAST, a quality gate and gated image publication to GHCR. See [the pipeline and setup guide](docs/devsecops.md) before running the workflow.
 
 > [The most trustworthy online shop out there.](https://twitter.com/dschadow/status/706781693504589824)
 > ([@dschadow](https://github.com/dschadow)) —

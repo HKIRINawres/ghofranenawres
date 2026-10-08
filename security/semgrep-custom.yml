@@ -1,0 +1,47 @@
+# Custom Semgrep rules (brief §3: "Semgrep, règles personnalisables"). The registry rulesets
+# (p/security-audit, p/javascript) do not know this application's database layer (MarsDB, a
+# MongoDB-like store) or its use of js-yaml 3 and the vm module, so these three rules close the gaps
+# found by comparing the scan results with the code.
+# Used by the pre-commit hook and by the CI `sast` job, next to the registry rulesets.
+rules:
+  - id: nosql-where-injection
+    languages: [javascript, typescript]
+    severity: ERROR
+    message: >-
+      A $where query is built by concatenating a variable: the string is executed as JavaScript by the
+      database, so request data becomes code (NoSQL injection). Pass the value as a query operand
+      ({ product: id }) and validate its type instead.
+    metadata:
+      cwe: ["CWE-943: Improper Neutralization of Special Elements in Data Query Logic"]
+      owasp: ["A03:2021 - Injection"]
+    pattern-either:
+      - pattern: '{ ..., $where: $A + $B, ... }'
+      - pattern: '{ ..., $where: `...${$X}...`, ... }'
+
+  - id: unsafe-yaml-load
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: >-
+      js-yaml 3.x `load` accepts JavaScript-specific tags (!!js/function) and builds arbitrary objects
+      from the document, which is an insecure deserialization when the document is not trusted.
+      Use `safeLoad` (js-yaml 3) or upgrade to js-yaml 4, whose `load` is safe by default.
+    metadata:
+      cwe: ["CWE-502: Deserialization of Untrusted Data"]
+      owasp: ["A08:2021 - Software and Data Integrity Failures"]
+    # a regex, not a code pattern: the call is also written inside a string handed to the vm module
+    pattern-regex: '\byaml\.load\('
+
+  - id: node-vm-not-a-sandbox
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: >-
+      The vm module is not a security boundary (Node.js documentation): code run through it can
+      escape the context. Never run input that comes from a request, a file or a database with it.
+    metadata:
+      cwe: ["CWE-94: Improper Control of Generation of Code ('Code Injection')"]
+      owasp: ["A03:2021 - Injection"]
+    pattern-either:
+      - pattern: vm.runInContext(...)
+      - pattern: vm.runInNewContext(...)
+      - pattern: vm.runInThisContext(...)
+      - pattern: new vm.Script(...)

@@ -1,0 +1,46 @@
+# Builds the same image as the upstream Dockerfile, with two changes:
+# 1. Upstream's `npm install` runs a postinstall hook that ends with an SBOM step. That step fails
+#    today because the frontend has package-lock=false, so its dependencies resolve to newer versions
+#    that no longer write dist/frontend/stats.json. We skip the hook and build the frontend directly.
+#    The SBOM comes from Trivy in docker_scan, so upstream's `npm run sbom` is not repeated here.
+# 2. CI speed: dependencies are installed from package.json alone, in stages that BuildKit builds in
+#    parallel. A code change reuses them from the cache and only recompiles the code.
+
+FROM node:24 AS server-deps
+WORKDIR /juice-shop
+COPY package.json ./
+RUN npm install --omit=dev --ignore-scripts && npm rebuild sqlite3 && npm dedupe --omit=dev
+
+FROM node:24 AS frontend
+WORKDIR /juice-shop/frontend
+COPY frontend/package.json frontend/.npmrc ./
+RUN npm install
+COPY frontend/ ./
+RUN npx ng build --configuration production
+
+FROM node:24 AS server-build
+WORKDIR /juice-shop
+COPY package.json ./
+RUN npm install --ignore-scripts --no-audit --no-fund
+COPY . .
+RUN npm run build:server
+
+FROM node:24 AS installer
+WORKDIR /juice-shop
+COPY . .
+COPY --from=server-build /juice-shop/build build
+COPY --from=frontend /juice-shop/frontend/dist frontend/dist
+RUN rm -rf frontend/src/assets \
+ && mkdir logs && chown -R 65532 logs \
+ && chgrp -R 0 ftp/ frontend/dist/ logs/ data/ i18n/ \
+ && chmod -R g=u ftp/ frontend/dist/ logs/ data/ i18n/ \
+ && rm -f ftp/legal.md i18n/*.json
+
+FROM gcr.io/distroless/nodejs24-debian13
+WORKDIR /juice-shop
+# node_modules gets its own layer, so it stays cached when only the code changes
+COPY --from=server-deps --chown=65532:0 /juice-shop/node_modules node_modules
+COPY --from=installer --chown=65532:0 /juice-shop .
+USER 65532
+EXPOSE 3000
+CMD ["/juice-shop/build/app.js"]

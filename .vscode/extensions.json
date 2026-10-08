@@ -1,0 +1,9 @@
+{
+  // Recommended extensions for a secure IDE (brief §3): VS Code prompts to install these
+  // when the repo is opened, so every developer gets real-time detection while typing.
+  "recommendations": [
+    "dbaeumer.vscode-eslint",       // ESLint, incl. eslint-plugin-security rules
+    "sonarsource.sonarlint-vscode", // SonarLint: multi-language SAST, couples to SonarQube
+    "semgrep.semgrep"               // Semgrep: same engine/rules as the sast job and pre-commit
+  ]
+}

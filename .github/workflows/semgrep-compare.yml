@@ -1,0 +1,43 @@
+# Manual helper (Phase 1 tool evaluation): runs several Semgrep rulesets side by side and
+# summarises, per ruleset, how many findings it produces and whether it catches the known
+# SQL injections of Juice Shop. Used to justify the ruleset choice in the project report.
+# It never blocks anything: it is a decision aid, not a gate.
+name: semgrep-compare
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  compare:
+    name: ${{ matrix.ruleset }}
+    runs-on: ubuntu-latest
+    container: semgrep/semgrep:1.165.0   # same version as the sast job and the pre-commit hook
+    strategy:
+      fail-fast: false
+      matrix:
+        ruleset: [p/security-audit, p/owasp-top-ten, p/javascript, p/typescript]
+    steps:
+      - uses: actions/checkout@v7
+      - name: Scan with this ruleset
+        run: |
+          OUT="semgrep-$(echo '${{ matrix.ruleset }}' | tr '/' '-').json"
+          semgrep scan --config "${{ matrix.ruleset }}" --metrics off --json --output "$OUT" || true
+      - name: Summarise findings
+        run: |
+          python3 - <<'PY' >> "$GITHUB_STEP_SUMMARY"
+          import json, glob, collections
+          for path in glob.glob("semgrep-*.json"):
+              res = json.load(open(path)).get("results", [])
+              sev = collections.Counter(r["extra"]["severity"] for r in res)
+              sqli = sorted({f'{r["path"]}:{r["start"]["line"]}' for r in res
+                             if "CWE-89" in str(r["extra"].get("metadata", {}).get("cwe", ""))})
+              print(f"### {path}: {len(res)} findings {dict(sev)}")
+              print(f"- SQL injection (CWE-89) locations: {sqli or 'none'}")
+          PY
+      - uses: actions/upload-artifact@v7
+        with:
+          name: semgrep-compare-${{ strategy.job-index }}
+          path: semgrep-*.json

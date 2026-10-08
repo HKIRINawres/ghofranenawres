@@ -1,0 +1,70 @@
+@slow
+Feature: HTTP hardening requirements for the application (acceptance criteria)
+  Written as requirements. A failing scenario is a finding that must be fixed or formally accepted
+  in security/accepted-risks.json.
+
+  Background:
+    Given "curl" is installed
+    And the following profile:
+      | name     | value                 |
+      | hostname | http://127.0.0.1:3000 |
+
+  Scenario: Content-Type sniffing is disabled
+    When I launch a "curl" attack with:
+      """
+      curl -sI <hostname>/
+      """
+    Then the output should contain:
+      """
+      X-Content-Type-Options: nosniff
+      """
+
+  Scenario: Clickjacking protection header is set
+    When I launch a "curl" attack with:
+      """
+      curl -sI <hostname>/
+      """
+    Then the output should contain:
+      """
+      X-Frame-Options
+      """
+
+  Scenario: A Content-Security-Policy header is set
+    When I launch a "curl" attack with:
+      """
+      curl -sI <hostname>/
+      """
+    Then the output should contain:
+      """
+      Content-Security-Policy
+      """
+
+  Scenario: The framework version is not disclosed
+    When I launch a "curl" attack with:
+      """
+      curl -sI <hostname>/
+      """
+    Then the output should not contain:
+      """
+      X-Powered-By
+      """
+
+  Scenario: The FTP directory listing is not public
+    When I launch a "curl" attack with:
+      """
+      curl -s <hostname>/ftp
+      """
+    Then the output should not contain:
+      """
+      acquisitions.md
+      """
+
+  Scenario: The metrics endpoint is not public
+    When I launch a "curl" attack with:
+      """
+      curl -s -o /dev/null -w "status=%{http_code}" <hostname>/metrics
+      """
+    Then the output should not contain:
+      """
+      status=200
+      """

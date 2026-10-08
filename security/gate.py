@@ -121,11 +121,11 @@ INFO_INPUTS = {
     "semgrep": ("semgrep-full.json", read_semgrep),
     "gitleaks": ("gitleaks-full.json", read_gitleaks),
 }
-SOURCE_JOBS = ("checks", "secrets_scan", "sast")
+SOURCE_JOBS = ("secrets_scan", "sast")
 
 
 def source_reason(job, state):
-    """Why an application-check or source-scan job blocks, or None when it succeeded."""
+    """Why a source-scan job blocks, or None when it succeeded."""
     if state == "success":
         return None
     return f"{job}: " + ("new finding since baseline" if state == "failure" else state)

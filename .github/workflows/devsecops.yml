@@ -47,7 +47,7 @@ env:
   TRIVY_IMAGE: aquasec/trivy:0.74.0
   CHECKOV_VERSION: "3.3.21"
   IMAGE: juice-shop:acceptance   # local name the scripts use for the pulled candidate
-  REGISTRY_IMAGE: ghcr.io/${{ github.repository }}
+  REGISTRY_IMAGE: ghcr.io/${{ lowerCase(github.repository) }}   # ghcr.io requires an all-lowercase repository name
   # build-push-action otherwise uploads a .dockerbuild record that breaks `gh run download`
   DOCKER_BUILD_RECORD_UPLOAD: "false"
 

@@ -92,6 +92,24 @@ Les seuils de blocage et la procédure d'exemption traçable sont décrits dans
 temporaire (`security/accepted-risks.json`) doit avoir un identifiant, une justification, un
 responsable et une date d'expiration (≤ 90 jours), relue par l'autre membre du binôme.
 
+### Régénérer la baseline (dérive des dépendances)
+
+Juice Shop est vulnérable *par construction* : sa base de risques connus est figée dans
+`security/accepted-risks.json`. Quand les versions des dépendances dérivent, les identifiants des
+constats (CVE, règles Checkov, plugins ZAP) ne correspondent plus à cette base et le gate bloque à
+nouveau tout, même sans régression réelle. Pour repartir d'un état sain :
+
+1. **Actions → devsecops → Run workflow**, cocher `refresh_baseline` (laisser `full_dast` décoché).
+2. Le job `refresh_baseline` (déclenchement manuel uniquement) rejoue `security/gate.py
+   --write-baseline` sur les rapports du run en cours et commet le nouveau
+   `security/accepted-risks.json` (expiration à 90 jours).
+3. Un push ultérieur relit cette base : seuls les constats réellement nouveaux bloquent, et
+   `deploy` peut promouvoir l'image.
+
+Remarque : le commit produit par `refresh_baseline` utilise le `GITHUB_TOKEN` du run ; GitHub ne
+déclenche volontairement pas de nouveau run pour un push fait avec ce jeton. Il faut donc pousser
+(ou relancer) une fois après la régénération pour voir le gate statuer sur la nouvelle base.
+
 ## Vérification et preuves à remettre
 
 Après le push, consulter **Actions → devsecops**. Les jobs `secrets_scan`, `sast`,

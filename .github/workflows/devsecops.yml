@@ -86,9 +86,12 @@ jobs:
       - uses: actions/checkout@v7
         with:
           fetch-depth: 0
+      # Inside the semgrep container the workspace is owned by another UID, so git refuses to run
+      # ("dubious ownership") until it is marked safe. This must happen BEFORE any git command below,
+      # otherwise the baseline guard fails and its `||` hides the real error behind a wrong message.
+      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Require the starting-code baseline tag
         run: git rev-parse --verify refs/tags/baseline >/dev/null || { echo 'Create and push the baseline tag as described in docs/devsecops.md.'; exit 1; }
-      - run: git config --global --add safe.directory "$GITHUB_WORKSPACE"
       - name: Full scan (report only)
         run: semgrep scan --config p/security-audit --config p/javascript --config security/semgrep-custom.yml --metrics off --json --output semgrep-full.json || true
       - name: New findings since baseline (blocking)

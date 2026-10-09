@@ -7,7 +7,7 @@
    "title": "Ensure VPC flow logging is enabled in all VPCs",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV2_AWS_11:/terraform/networking.tf:aws_vpc.main",
@@ -16,7 +16,7 @@
    "title": "Ensure VPC flow logging is enabled in all VPCs",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV2_AWS_12:/infrastructure/terraform/networking.tf:aws_vpc.main",
@@ -25,7 +25,7 @@
    "title": "Ensure the default security group of every VPC restricts all traffic",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV2_AWS_12:/terraform/networking.tf:aws_vpc.main",
@@ -34,7 +34,7 @@
    "title": "Ensure the default security group of every VPC restricts all traffic",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV2_AWS_20:/infrastructure/terraform/networking.tf:aws_lb.juice_shop",
@@ -43,7 +43,7 @@
    "title": "Ensure that ALB redirects HTTP requests into HTTPS ones",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV2_AWS_20:/terraform/networking.tf:aws_lb.juice_shop",
@@ -52,7 +52,7 @@
    "title": "Ensure that ALB redirects HTTP requests into HTTPS ones",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV2_AWS_28:/infrastructure/terraform/networking.tf:aws_lb.juice_shop",
@@ -61,7 +61,7 @@
    "title": "Ensure public facing ALB are protected by WAF",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV2_AWS_28:/terraform/networking.tf:aws_lb.juice_shop",
@@ -70,7 +70,7 @@
    "title": "Ensure public facing ALB are protected by WAF",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_103:/infrastructure/terraform/networking.tf:aws_lb_listener.http",
@@ -79,7 +79,7 @@
    "title": "Ensure that load balancer is using at least TLS 1.2",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_103:/terraform/networking.tf:aws_lb_listener.http",
@@ -88,7 +88,7 @@
    "title": "Ensure that load balancer is using at least TLS 1.2",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_130:/infrastructure/terraform/networking.tf:aws_subnet.public[0]",
@@ -97,7 +97,7 @@
    "title": "Ensure VPC subnets do not assign public IP by default",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_130:/infrastructure/terraform/networking.tf:aws_subnet.public[1]",
@@ -106,7 +106,7 @@
    "title": "Ensure VPC subnets do not assign public IP by default",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_130:/terraform/networking.tf:aws_subnet.public[0]",
@@ -115,7 +115,7 @@
    "title": "Ensure VPC subnets do not assign public IP by default",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_130:/terraform/networking.tf:aws_subnet.public[1]",
@@ -124,7 +124,7 @@
    "title": "Ensure VPC subnets do not assign public IP by default",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_131:/infrastructure/terraform/networking.tf:aws_lb.juice_shop",
@@ -133,7 +133,7 @@
    "title": "Ensure that ALB drops HTTP headers",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_131:/terraform/networking.tf:aws_lb.juice_shop",
@@ -142,7 +142,7 @@
    "title": "Ensure that ALB drops HTTP headers",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_150:/infrastructure/terraform/networking.tf:aws_lb.juice_shop",
@@ -151,7 +151,7 @@
    "title": "Ensure that Load Balancer has deletion protection enabled",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_150:/terraform/networking.tf:aws_lb.juice_shop",
@@ -160,7 +160,7 @@
    "title": "Ensure that Load Balancer has deletion protection enabled",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_158:/infrastructure/terraform/main.tf:aws_cloudwatch_log_group.juice_shop",
@@ -169,7 +169,7 @@
    "title": "Ensure that CloudWatch Log Group is encrypted by KMS",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_158:/terraform/main.tf:aws_cloudwatch_log_group.juice_shop",
@@ -178,7 +178,7 @@
    "title": "Ensure that CloudWatch Log Group is encrypted by KMS",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_184:/infrastructure/terraform/networking.tf:aws_efs_file_system.juice_shop_data",
@@ -187,7 +187,7 @@
    "title": "Ensure resource is encrypted by KMS using a customer managed Key (CMK)",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_184:/terraform/networking.tf:aws_efs_file_system.juice_shop_data",
@@ -196,7 +196,7 @@
    "title": "Ensure resource is encrypted by KMS using a customer managed Key (CMK)",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_23:/infrastructure/terraform/networking.tf:aws_security_group.alb",
@@ -205,7 +205,7 @@
    "title": "Ensure every security group and rule has a description",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_23:/infrastructure/terraform/networking.tf:aws_security_group.ecs",
@@ -214,7 +214,7 @@
    "title": "Ensure every security group and rule has a description",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_23:/infrastructure/terraform/networking.tf:aws_security_group.efs",
@@ -223,7 +223,7 @@
    "title": "Ensure every security group and rule has a description",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_23:/terraform/networking.tf:aws_security_group.alb",
@@ -232,7 +232,7 @@
    "title": "Ensure every security group and rule has a description",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_23:/terraform/networking.tf:aws_security_group.ecs",
@@ -241,7 +241,7 @@
    "title": "Ensure every security group and rule has a description",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_23:/terraform/networking.tf:aws_security_group.efs",
@@ -250,7 +250,7 @@
    "title": "Ensure every security group and rule has a description",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_260:/infrastructure/terraform/networking.tf:aws_security_group.alb",
@@ -259,7 +259,7 @@
    "title": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_260:/terraform/networking.tf:aws_security_group.alb",
@@ -268,7 +268,7 @@
    "title": "Ensure no security groups allow ingress from 0.0.0.0:0 to port 80",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_2:/infrastructure/terraform/networking.tf:aws_lb_listener.http",
@@ -277,7 +277,7 @@
    "title": "Ensure ALB protocol is HTTPS",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_2:/terraform/networking.tf:aws_lb_listener.http",
@@ -286,7 +286,7 @@
    "title": "Ensure ALB protocol is HTTPS",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_333:/infrastructure/terraform/main.tf:aws_ecs_service.juice_shop",
@@ -295,7 +295,7 @@
    "title": "Ensure ECS services do not have public IP addresses assigned to them automatically",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_333:/terraform/main.tf:aws_ecs_service.juice_shop",
@@ -304,7 +304,7 @@
    "title": "Ensure ECS services do not have public IP addresses assigned to them automatically",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_336:/infrastructure/terraform/main.tf:aws_ecs_task_definition.juice_shop",
@@ -313,7 +313,7 @@
    "title": "Ensure ECS containers are limited to read-only access to root filesystems",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_336:/terraform/main.tf:aws_ecs_task_definition.juice_shop",
@@ -322,7 +322,7 @@
    "title": "Ensure ECS containers are limited to read-only access to root filesystems",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_338:/infrastructure/terraform/main.tf:aws_cloudwatch_log_group.juice_shop",
@@ -331,7 +331,7 @@
    "title": "Ensure CloudWatch log groups retains logs for at least 1 year",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_338:/terraform/main.tf:aws_cloudwatch_log_group.juice_shop",
@@ -340,7 +340,7 @@
    "title": "Ensure CloudWatch log groups retains logs for at least 1 year",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_378:/infrastructure/terraform/networking.tf:aws_lb_target_group.juice_shop",
@@ -349,7 +349,7 @@
    "title": "Ensure AWS Load Balancer doesn't use HTTP protocol",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_378:/terraform/networking.tf:aws_lb_target_group.juice_shop",
@@ -358,7 +358,7 @@
    "title": "Ensure AWS Load Balancer doesn't use HTTP protocol",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_382:/infrastructure/terraform/networking.tf:aws_security_group.alb",
@@ -367,7 +367,7 @@
    "title": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_382:/infrastructure/terraform/networking.tf:aws_security_group.ecs",
@@ -376,7 +376,7 @@
    "title": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_382:/infrastructure/terraform/networking.tf:aws_security_group.efs",
@@ -385,7 +385,7 @@
    "title": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_382:/terraform/networking.tf:aws_security_group.alb",
@@ -394,7 +394,7 @@
    "title": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_382:/terraform/networking.tf:aws_security_group.ecs",
@@ -403,7 +403,7 @@
    "title": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_382:/terraform/networking.tf:aws_security_group.efs",
@@ -412,7 +412,7 @@
    "title": "Ensure no security groups allow egress from 0.0.0.0:0 to port -1",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_394:/infrastructure/terraform/networking.tf:aws_availability_zones.available",
@@ -421,7 +421,7 @@
    "title": "Ensure aws_availability_zones data source pins zone identity so its result set does not silently expand when AWS adds an Availability Zone",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_394:/terraform/networking.tf:aws_availability_zones.available",
@@ -430,7 +430,7 @@
    "title": "Ensure aws_availability_zones data source pins zone identity so its result set does not silently expand when AWS adds an Availability Zone",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_91:/infrastructure/terraform/networking.tf:aws_lb.juice_shop",
@@ -439,7 +439,7 @@
    "title": "Ensure the ELBv2 (Application/Network) has access logging enabled",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_AWS_91:/terraform/networking.tf:aws_lb.juice_shop",
@@ -448,7 +448,7 @@
    "title": "Ensure the ELBv2 (Application/Network) has access logging enabled",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_2:/Dockerfile:/Dockerfile.",
@@ -457,7 +457,7 @@
    "title": "Ensure that HEALTHCHECK instructions have been added to container images",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_2:/infrastructure/Dockerfile:/infrastructure/Dockerfile.",
@@ -466,7 +466,7 @@
    "title": "Ensure that HEALTHCHECK instructions have been added to container images",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_2:/security/Dockerfile.acceptance:/security/Dockerfile.acceptance.",
@@ -475,7 +475,7 @@
    "title": "Ensure that HEALTHCHECK instructions have been added to container images",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_2:/test/smoke/Dockerfile:/test/smoke/Dockerfile.",
@@ -484,7 +484,7 @@
    "title": "Ensure that HEALTHCHECK instructions have been added to container images",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_3:/test/smoke/Dockerfile:/test/smoke/Dockerfile.",
@@ -493,7 +493,7 @@
    "title": "Ensure that a user for the container has been created",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_7:/Dockerfile:/Dockerfile.FROM",
@@ -502,7 +502,7 @@
    "title": "Ensure the base image uses a non latest version tag",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_7:/security/Dockerfile.acceptance:/security/Dockerfile.acceptance.FROM",
@@ -511,7 +511,7 @@
    "title": "Ensure the base image uses a non latest version tag",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_DOCKER_7:/test/smoke/Dockerfile:/test/smoke/Dockerfile.FROM",
@@ -520,7 +520,7 @@
    "title": "Ensure the base image uses a non latest version tag",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "checkov:CKV_GHA_7:/.github/workflows/devsecops.yml:on(devsecops)",
@@ -529,7 +529,7 @@
    "title": "The build output cannot be affected by user parameters other than the build entry point and the top-level source location. GitHub Actions workflow_dispatch inputs MUST be empty. ",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "gauntlt:http-hardening.attack:A Content-Security-Policy header is set",
@@ -538,7 +538,7 @@
    "title": "A Content-Security-Policy header is set",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "gauntlt:http-hardening.attack:The FTP directory listing is not public",
@@ -547,7 +547,7 @@
    "title": "The FTP directory listing is not public",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "gauntlt:http-hardening.attack:The metrics endpoint is not public",
@@ -556,7 +556,7 @@
    "title": "The metrics endpoint is not public",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2015-9235:jsonwebtoken",
@@ -565,7 +565,7 @@
    "title": "jsonwebtoken 0.4.0: nodejs-jsonwebtoken: verification step bypass with an altered token",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2016-1000223:jws",
@@ -574,7 +574,7 @@
    "title": "jws 0.2.6: Forgeable Public/Private Tokens",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2017-18214:moment",
@@ -583,7 +583,7 @@
    "title": "moment 2.0.0: nodejs-moment: Regular expression denial of service",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2018-16487:lodash",
@@ -592,7 +592,7 @@
    "title": "lodash 2.4.2: lodash: Prototype pollution in utilities function",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2019-10744:lodash",
@@ -601,7 +601,7 @@
    "title": "lodash 2.4.2: nodejs-lodash: prototype pollution in defaultsDeep function leading to modifying properties",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2020-15084:express-jwt",
@@ -610,7 +610,7 @@
    "title": "express-jwt 0.1.3: Authorization bypass in express-jwt",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2021-23337:lodash",
@@ -619,7 +619,7 @@
    "title": "lodash 2.4.2: nodejs-lodash: command injection via template",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2022-23539:jsonwebtoken",
@@ -628,7 +628,7 @@
    "title": "jsonwebtoken 0.4.0: jsonwebtoken: Unrestricted key type could lead to legacy keys usagen",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2022-24785:moment",
@@ -637,7 +637,7 @@
    "title": "moment 2.0.0: Moment.js: Path traversal  in moment.locale",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2022-25881:http-cache-semantics",
@@ -646,7 +646,7 @@
    "title": "http-cache-semantics 3.8.1: http-cache-semantics: Regular Expression Denial of Service (ReDoS) vulnerability",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2022-25887:sanitize-html",
@@ -655,7 +655,7 @@
    "title": "sanitize-html 1.4.2: sanitize-html: insecure global regular expression replacement logic may lead to ReDoS",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2023-46233:crypto-js",
@@ -664,7 +664,7 @@
    "title": "crypto-js 3.3.0: crypto-js: PBKDF2 1,000 times weaker than specified in 1993 and 1.3M times weaker than current standard",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2024-37890:ws",
@@ -673,7 +673,7 @@
    "title": "ws 7.4.6: nodejs-ws: denial of service when handling a request with many HTTP headers",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2025-47935:multer",
@@ -682,7 +682,7 @@
    "title": "multer 1.4.5-lts.2: Multer vulnerable to Denial of Service via memory leaks from unclosed streams",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2025-47944:multer",
@@ -691,7 +691,7 @@
    "title": "multer 1.4.5-lts.2: Multer vulnerable to Denial of Service from maliciously crafted requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2025-48997:multer",
@@ -700,7 +700,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer vulnerable to Denial of Service via unhandled exception",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2025-65945:jws",
@@ -709,7 +709,7 @@
    "title": "jws 0.2.6: node-jws: auth0/node-jws: Improper signature verification in HS256 algorithm",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2025-7338:multer",
@@ -718,7 +718,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer Denial of Service",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-101894:decompress",
@@ -727,7 +727,7 @@
    "title": "decompress 4.2.1: @xhmikosr/decompress: Path traversal via symlink chain",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-106445:handlebars",
@@ -736,7 +736,7 @@
    "title": "handlebars 4.7.9: Handlebars provides the power necessary to let users build semantic te ...",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-106446:handlebars",
@@ -745,7 +745,7 @@
    "title": "handlebars 4.7.9: Handlebars provides the power necessary to let users build semantic te ...",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-2359:multer",
@@ -754,7 +754,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via dropped file upload connections",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-23745:tar",
@@ -763,7 +763,7 @@
    "title": "tar 6.2.1: node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-23950:tar",
@@ -772,7 +772,7 @@
    "title": "tar 6.2.1: node-tar: tar: node-tar: Arbitrary file overwrite via Unicode path collision race condition",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-24842:tar",
@@ -781,7 +781,7 @@
    "title": "tar 6.2.1: node-tar: tar: node-tar: Arbitrary file creation via path traversal bypass in hardlink security check",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-26960:tar",
@@ -790,7 +790,7 @@
    "title": "tar 6.2.1: node-tar: node-tar: Arbitrary file read/write via malicious archive hardlink creation",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-26996:minimatch",
@@ -799,7 +799,7 @@
    "title": "minimatch 3.0.5: minimatch: minimatch: Denial of Service via specially crafted glob patterns",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-27903:minimatch",
@@ -808,7 +808,7 @@
    "title": "minimatch 3.0.5: minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-27904:minimatch",
@@ -817,7 +817,7 @@
    "title": "minimatch 3.0.5: minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-29786:tar",
@@ -826,7 +826,7 @@
    "title": "tar 6.2.1: node-tar: hardlink path traversal via drive-relative linkpath",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-31802:tar",
@@ -835,7 +835,7 @@
    "title": "tar 6.2.1: tar: tar: File overwrite via drive-relative symlink traversal",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-3304:multer",
@@ -844,7 +844,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via malformed requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-33151:socket.io-parser",
@@ -853,7 +853,7 @@
    "title": "socket.io-parser 4.0.5: socket.io: Socket.IO: Denial of Service due to excessive buffering of specially crafted packets",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-3520:multer",
@@ -862,7 +862,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via malformed requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-48779:ws",
@@ -871,7 +871,7 @@
    "title": "ws 7.4.6: ws: ws: Denial of Service via memory exhaustion from small WebSocket fragments",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-5079:multer",
@@ -880,7 +880,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via deeply nested field names in multipart form data",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-53486:decompress",
@@ -889,7 +889,7 @@
    "title": "decompress 4.2.1: decompress: @xhmikosr/decompress: Decompress: Arbitrary file read/write via crafted archive extraction",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-59725:engine.io",
@@ -898,7 +898,7 @@
    "title": "engine.io 4.1.2: socket.io: engine.io: Socket.IO: Denial of Service via invalid binary POST requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-59873:tar",
@@ -907,7 +907,7 @@
    "title": "tar 6.2.1: tar: node-tar: Denial of Service via crafted gzip bomb",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-59874:tar",
@@ -916,7 +916,7 @@
    "title": "tar 6.2.1: tar: Node-tar: Denial of Service via malformed tar archive header",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-69185:socket.io-parser",
@@ -925,7 +925,7 @@
    "title": "socket.io-parser 4.0.5: socket.io-parser: Socket.IO: Denial of Service via memory exhaustion from crafted packets",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-71851:crypto-js",
@@ -934,7 +934,7 @@
    "title": "crypto-js 3.3.0: crypto-js: crypto-js: Insufficient Entropy in Cryptographic Secret Generation via Vulnerable CryptoJS Dependency Chain",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-73566:tar",
@@ -943,7 +943,7 @@
    "title": "tar 6.2.1: tar: node-tar: Denial of Service via crafted long-path tar archive",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-77078:multer",
@@ -952,7 +952,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via crafted multipart field names",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-82333:multer",
@@ -961,7 +961,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via oversized array index in field names",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:CVE-2026-93748:http-cache-semantics",
@@ -970,7 +970,7 @@
    "title": "http-cache-semantics 3.8.1: http-cache-semantics: http-cache-semantics: Information Disclosure via max-stale directive",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:GHSA-5mrr-rgp6-x4gr:marsdb",
@@ -979,7 +979,7 @@
    "title": "marsdb 0.6.11: Command Injection in marsdb",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:NSWG-ECO-17:jsonwebtoken",
@@ -988,7 +988,7 @@
    "title": "jsonwebtoken 0.4.0: Verification Bypass",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy:NSWG-ECO-428:base64url",
@@ -997,7 +997,7 @@
    "title": "base64url 0.0.6: Out-of-bounds Read",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2015-9235:jsonwebtoken",
@@ -1006,7 +1006,7 @@
    "title": "jsonwebtoken 0.4.0: nodejs-jsonwebtoken: verification step bypass with an altered token",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2016-1000223:jws",
@@ -1015,7 +1015,7 @@
    "title": "jws 0.2.6: Forgeable Public/Private Tokens",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2017-18214:moment",
@@ -1024,7 +1024,7 @@
    "title": "moment 2.0.0: nodejs-moment: Regular expression denial of service",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2018-16487:lodash",
@@ -1033,7 +1033,7 @@
    "title": "lodash 2.4.2: lodash: Prototype pollution in utilities function",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2019-10744:lodash",
@@ -1042,7 +1042,7 @@
    "title": "lodash 2.4.2: nodejs-lodash: prototype pollution in defaultsDeep function leading to modifying properties",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2020-15084:express-jwt",
@@ -1051,7 +1051,7 @@
    "title": "express-jwt 0.1.3: Authorization bypass in express-jwt",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2021-23337:lodash",
@@ -1060,7 +1060,7 @@
    "title": "lodash 2.4.2: nodejs-lodash: command injection via template",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2022-23539:jsonwebtoken",
@@ -1069,7 +1069,7 @@
    "title": "jsonwebtoken 0.4.0: jsonwebtoken: Unrestricted key type could lead to legacy keys usagen",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2022-24785:moment",
@@ -1078,7 +1078,7 @@
    "title": "moment 2.0.0: Moment.js: Path traversal  in moment.locale",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2022-25881:http-cache-semantics",
@@ -1087,7 +1087,7 @@
    "title": "http-cache-semantics 3.8.1: http-cache-semantics: Regular Expression Denial of Service (ReDoS) vulnerability",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2022-25887:sanitize-html",
@@ -1096,7 +1096,7 @@
    "title": "sanitize-html 1.4.2: sanitize-html: insecure global regular expression replacement logic may lead to ReDoS",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2023-46233:crypto-js",
@@ -1105,7 +1105,7 @@
    "title": "crypto-js 3.3.0: crypto-js: PBKDF2 1,000 times weaker than specified in 1993 and 1.3M times weaker than current standard",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2024-37890:ws",
@@ -1114,7 +1114,7 @@
    "title": "ws 7.4.6: nodejs-ws: denial of service when handling a request with many HTTP headers",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2025-47935:multer",
@@ -1123,7 +1123,7 @@
    "title": "multer 1.4.5-lts.2: Multer vulnerable to Denial of Service via memory leaks from unclosed streams",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2025-47944:multer",
@@ -1132,7 +1132,7 @@
    "title": "multer 1.4.5-lts.2: Multer vulnerable to Denial of Service from maliciously crafted requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2025-48997:multer",
@@ -1141,7 +1141,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer vulnerable to Denial of Service via unhandled exception",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2025-65945:jws",
@@ -1150,7 +1150,7 @@
    "title": "jws 0.2.6: node-jws: auth0/node-jws: Improper signature verification in HS256 algorithm",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2025-7338:multer",
@@ -1159,7 +1159,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer Denial of Service",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-101894:decompress",
@@ -1168,7 +1168,7 @@
    "title": "decompress 4.2.1: @xhmikosr/decompress: Path traversal via symlink chain",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-106445:handlebars",
@@ -1177,7 +1177,7 @@
    "title": "handlebars 4.7.9: Handlebars provides the power necessary to let users build semantic te ...",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-106446:handlebars",
@@ -1186,7 +1186,7 @@
    "title": "handlebars 4.7.9: Handlebars provides the power necessary to let users build semantic te ...",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-2359:multer",
@@ -1195,7 +1195,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via dropped file upload connections",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-23745:tar",
@@ -1204,7 +1204,7 @@
    "title": "tar 6.2.1: node-tar: tar: node-tar: Arbitrary file overwrite and symlink poisoning via unsanitized linkpaths in archives",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-23950:tar",
@@ -1213,7 +1213,7 @@
    "title": "tar 6.2.1: node-tar: tar: node-tar: Arbitrary file overwrite via Unicode path collision race condition",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-24842:tar",
@@ -1222,7 +1222,7 @@
    "title": "tar 6.2.1: node-tar: tar: node-tar: Arbitrary file creation via path traversal bypass in hardlink security check",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-26960:tar",
@@ -1231,7 +1231,7 @@
    "title": "tar 6.2.1: node-tar: node-tar: Arbitrary file read/write via malicious archive hardlink creation",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-26996:minimatch",
@@ -1240,7 +1240,7 @@
    "title": "minimatch 3.0.5: minimatch: minimatch: Denial of Service via specially crafted glob patterns",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-27903:minimatch",
@@ -1249,7 +1249,7 @@
    "title": "minimatch 3.0.5: minimatch: minimatch: Denial of Service due to unbounded recursive backtracking via crafted glob patterns",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-27904:minimatch",
@@ -1258,7 +1258,7 @@
    "title": "minimatch 3.0.5: minimatch: Minimatch: Denial of Service via catastrophic backtracking in glob expressions",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-29786:tar",
@@ -1267,7 +1267,7 @@
    "title": "tar 6.2.1: node-tar: hardlink path traversal via drive-relative linkpath",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-31802:tar",
@@ -1276,7 +1276,7 @@
    "title": "tar 6.2.1: tar: tar: File overwrite via drive-relative symlink traversal",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-3304:multer",
@@ -1285,7 +1285,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via malformed requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-33151:socket.io-parser",
@@ -1294,7 +1294,7 @@
    "title": "socket.io-parser 4.0.5: socket.io: Socket.IO: Denial of Service due to excessive buffering of specially crafted packets",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-3520:multer",
@@ -1303,7 +1303,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via malformed requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-48779:ws",
@@ -1312,7 +1312,7 @@
    "title": "ws 7.4.6: ws: ws: Denial of Service via memory exhaustion from small WebSocket fragments",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-5079:multer",
@@ -1321,7 +1321,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via deeply nested field names in multipart form data",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-53486:decompress",
@@ -1330,7 +1330,7 @@
    "title": "decompress 4.2.1: decompress: @xhmikosr/decompress: Decompress: Arbitrary file read/write via crafted archive extraction",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-59725:engine.io",
@@ -1339,7 +1339,7 @@
    "title": "engine.io 4.1.2: socket.io: engine.io: Socket.IO: Denial of Service via invalid binary POST requests",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-59873:tar",
@@ -1348,7 +1348,7 @@
    "title": "tar 6.2.1: tar: node-tar: Denial of Service via crafted gzip bomb",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-59874:tar",
@@ -1357,7 +1357,7 @@
    "title": "tar 6.2.1: tar: Node-tar: Denial of Service via malformed tar archive header",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-69185:socket.io-parser",
@@ -1366,7 +1366,7 @@
    "title": "socket.io-parser 4.0.5: socket.io-parser: Socket.IO: Denial of Service via memory exhaustion from crafted packets",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-71851:crypto-js",
@@ -1375,7 +1375,7 @@
    "title": "crypto-js 3.3.0: crypto-js: crypto-js: Insufficient Entropy in Cryptographic Secret Generation via Vulnerable CryptoJS Dependency Chain",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-73566:tar",
@@ -1384,7 +1384,7 @@
    "title": "tar 6.2.1: tar: node-tar: Denial of Service via crafted long-path tar archive",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-77078:multer",
@@ -1393,7 +1393,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via crafted multipart field names",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-82333:multer",
@@ -1402,7 +1402,7 @@
    "title": "multer 1.4.5-lts.2: multer: Multer: Denial of Service via oversized array index in field names",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:CVE-2026-93748:http-cache-semantics",
@@ -1411,7 +1411,7 @@
    "title": "http-cache-semantics 3.8.1: http-cache-semantics: http-cache-semantics: Information Disclosure via max-stale directive",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:GHSA-5mrr-rgp6-x4gr:marsdb",
@@ -1420,7 +1420,7 @@
    "title": "marsdb 0.6.11: Command Injection in marsdb",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:NSWG-ECO-17:jsonwebtoken",
@@ -1429,7 +1429,7 @@
    "title": "jsonwebtoken 0.4.0: Verification Bypass",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "trivy_fs:NSWG-ECO-428:base64url",
@@ -1438,7 +1438,7 @@
    "title": "base64url 0.0.6: Out-of-bounds Read",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "zap:10038",
@@ -1447,7 +1447,7 @@
    "title": "Content Security Policy (CSP) Header Not Set",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "zap:10063",
@@ -1456,7 +1456,7 @@
    "title": "Deprecated Feature Policy Header Set",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "zap:10098",
@@ -1465,7 +1465,7 @@
    "title": "Cross-Domain Misconfiguration",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "zap:10110",
@@ -1474,7 +1474,7 @@
    "title": "Dangerous JS Functions",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   },
   {
    "id": "zap:90004",
@@ -1483,7 +1483,7 @@
    "title": "Cross-Origin-Opener-Policy Header Missing or Invalid",
    "reason": "Baseline: present in the unmodified OWASP Juice Shop import (tag `baseline`), not individually reviewed. Accepted so that only new findings block; must be reviewed before any real deployment.",
    "owner": "team",
-   "expires": "2027-01-06"
+   "expires": "2027-01-07"
   }
  ]
 }

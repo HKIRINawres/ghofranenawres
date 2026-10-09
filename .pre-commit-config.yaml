@@ -15,19 +15,17 @@ repos:
       - id: detect-private-key       # blocks a private key committed by mistake
       - id: check-merge-conflict     # blocks leftover conflict markers
 
-  # --- file-type / filename secret leak (Lab 1) ---
+
+
   # HMRC swaps the two IDs: secrets_filecontent checks the file TYPE, secrets_filename the CONTENT.
   # The exclude regex is the lab's list of binary extensions, written as a single anchored pattern.
+    # --- file-type check; Gitleaks below scans file contents ---
   - repo: https://github.com/hmrc/security-git-hooks
     rev: release/1.15.0
     hooks:
       - id: secrets_filecontent
         name: Checking staged files for sensitive file types
         exclude: '\.(tar|gz|jar|7z|rar|bz2|zip|gzip|war|ear|xlsx|xls|docx|doc|pptx|pdf|jpg|png|jpeg|tif|tiff|gif|bmp|webp|svg|ico|psd|exe|dll|dmg|deb|rpm)$'
-      - id: secrets_filename
-        name: Checking staged files for sensitive content
-        exclude: '\.(tar|gz|jar|7z|rar|bz2|zip|gzip|war|ear|xlsx|xls|docx|doc|pptx|pdf|jpg|png|jpeg|tif|tiff|gif|bmp|webp|svg|ico|psd|exe|dll|dmg|deb|rpm)$'
-
   # --- secret scanning (same tool and version as the secrets_scan job) ---
   - repo: https://github.com/gitleaks/gitleaks
     rev: v8.30.1

@@ -142,7 +142,7 @@ def main(argv):
     dry = "--dry-run" in argv
     r = result()
     env = os.environ.get
-    main_push = env("GITHUB_EVENT_NAME") == "push" and env("GITHUB_REF") == "refs/heads/main"
+    main_push = env("GITHUB_EVENT_NAME") == "push" and env("GITHUB_REF") == "refs/heads/master"
     if not (r["blocked"] or main_push or dry):
         print("accepted run outside main: no notification")
         return 0
